@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Al-Ghaida Textiles — Royal House of Fine Cloth, Al Sadd, Doha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght=400;500;600;700&family=Cormorant+Garamond:ital,wght=0,400;0,500;0,600;1,400;1,500&family=Jost:wght=300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* ---- Royal token system ---- */
+    --maroon-deep:#1a060c;      /* near-black imperial burgundy — primary bg */
+    --maroon:#3a0f1c;           /* raised panel burgundy */
+    --maroon-soft:#4f1626;      /* card/hover burgundy */
+    --gold:#C5A059;             /* metallic gold accent */
+    --gold-bright:#e7c988;
+    --gold-dim:rgba(197,160,89,0.35);
+    --ivory:#f6f1e6;            /* crisp off-white text */
+    --ivory-dim:#cdbfa9;
+    --shadow-gold: 0 0 0 1px rgba(197,160,89,0.4), 0 18px 50px -20px rgba(0,0,0,0.7);
+    --ease-royal: cubic-bezier(0.25, 1, 0.5, 1); 
+    --maxw:1200px;
+  }
+  *{box-sizing:border-box;}
+  
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+  }
+  
+  /* --- Premium Language Cross-Dissolve Engine --- */
+  body {
+    transition: opacity 0.4s var(--ease-royal), transform 0.4s var(--ease-royal);
+    will-change: opacity, transform;
+  }
+  
+  html.lang-switching body {
+    opacity: 0;
+    transform: scale(0.995);
+  }
+
+  html[data-lang="ar"] {
+    direction: rtl;
+  }
+  
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important; transition:none !important;}
+    html.lang-switching body { opacity: 1; transform: none; }
+  }
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse 900px 500px at 50% 0%, rgba(197,160,89,0.07), transparent 60%),
+      var(--maroon-deep);
+    color:var(--ivory);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    overflow-x: hidden;
+  }
+  h1,h2,h3{margin:0; font-weight:500;}
+  .font-cinzel{font-family:'Cinzel',serif;}
+  .font-garamond{font-family:'Cormorant Garamond',serif;}
+  a{color:inherit;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 32px;}
+  .eyebrow {
+    font-family:'Jost',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.36em;
+    font-size:11px;
+    color:var(--gold);
+    font-weight:500;
+    display: block;
+  }
+  
+  /* Regional font handling adjustments for traditional Arabic balance */
+  html[data-lang="ar"] body { font-family: system-ui, -apple-system, sans-serif; font-weight: 400; }
+  html[data-lang="ar"] .font-cinzel, html[data-lang="ar"] h1, html[data-lang="ar"] h2 { font-family: 'Cinzel', system-ui, serif; }
+  html[data-lang="ar"] .font-garamond, html[data-lang="ar"] .lede, html[data-lang="ar"] p { font-family: system-ui, serif; font-style: normal; }
+  html[data-lang="ar"] .eyebrow { letter-spacing: 0.1em; }
+
+  :focus-visible{outline:2px solid var(--gold-bright); outline-offset:3px;}
+ 
+  /* ---------- GLOBAL LANGUAGE VISIBILITY HOOKS ---------- */
+  html[data-lang="en"] .lang-ar { display: none !important; }
+  html[data-lang="ar"] .lang-en { display: none !important; }
+
+  /* ---------- FRAME ---------- */
+  .gold-frame{
+    border:1px solid var(--gold-dim);
+    box-shadow:var(--shadow-gold);
+    position:relative;
+  }
+  .gold-frame::before{
+    content:"";
+    position:absolute; inset:7px;
+    border:1px solid rgba(197,160,89,0.18);
+    pointer-events:none;
+  }
+ 
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(26,6,12,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom:1px solid var(--gold-dim);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; max-width:var(--maxw); margin:0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:13px; text-decoration:none;}
+  .brand .crown{width:28px; height:28px; color:var(--gold-bright);}
+  
+  html[data-lang="ar"] .brand .crown { transform: scaleX(-1); }
+  
+  .brand-name{font-family:'Cinzel',serif; font-size:17px; letter-spacing:0.16em; color:var(--ivory); text-transform:uppercase;}
+  .brand-name b{color:var(--gold-bright); font-weight:600;}
+  nav.links{display:flex; align-items:center; gap:34px; font-size:12.5px; letter-spacing:0.08em; text-transform:uppercase;}
+  nav.links a{text-decoration:none; color:var(--ivory-dim); position:relative; padding-bottom:3px;}
+  nav.links a:not(.lang-toggle)::after{
+    content:""; position:absolute; left:0; right:100%; bottom:0; height:1px; background:var(--gold-bright);
+    transition:right .35s var(--ease-royal);
+  }
+  html[data-lang="ar"] nav.links a:not(.lang-toggle)::after { left:0; right:100%; }
+  nav.links a:not(.lang-toggle):hover{color:var(--gold-bright);}
+  nav.links a:not(.lang-toggle):hover::after{right:0;}
+  
+  .lang-toggle{
+    border:1px solid var(--gold); padding:7px 14px; color:var(--gold-bright) !important;
+    font-size:14px !important; letter-spacing:0.02em !important;
+    text-transform:none !important; cursor:pointer; background:none;
+    transition:background .35s var(--ease-royal), border-color .35s var(--ease-royal);
+    font-weight: 500;
+  }
+  .lang-toggle:hover{background:rgba(197,160,89,0.12); border-color:var(--gold-bright);}
+  
+  .nav-cta{
+    display:inline-flex; align-items:center; gap:8px;
+    border:1px solid var(--gold); color:var(--gold-bright);
+    padding:10px 20px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase;
+    text-decoration:none; white-space:nowrap;
+    transition:background .4s var(--ease-royal), color .4s var(--ease-royal), border-color .4s var(--ease-royal);
+  }
+  .nav-cta:hover{background:var(--gold); color:var(--maroon-deep); border-color:var(--gold);}
+ 
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; overflow:hidden;
+    padding:130px 32px 150px;
+    text-align:center;
+    background:
+      radial-gradient(ellipse at 50% -10%, rgba(197,160,89,0.14), transparent 55%),
+      linear-gradient(180deg, var(--maroon-deep), #150409 70%, var(--maroon-deep));
+  }
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(115deg, rgba(197,160,89,0.035) 0 1px, transparent 1px 34px),
+      repeating-linear-gradient(25deg, rgba(197,160,89,0.03) 0 1px, transparent 1px 34px);
+    pointer-events:none;
+  }
+  .hero-frame{max-width:920px; margin:0 auto; position:relative; z-index:2;}
+  
+  /* Entrance Cascades */
+  .hero .eyebrow-load { opacity: 0; animation: royalLoadIn 1s var(--ease-royal) forwards; }
+  .hero .crown-load { opacity: 0; animation: royalLoadIn 1s var(--ease-royal) 0.15s forwards; }
+  .hero .title-load { opacity: 0; animation: royalLoadIn 1.2s var(--ease-royal) 0.3s forwards; }
+  .hero .lede-load { opacity: 0; animation: royalLoadIn 1.2s var(--ease-royal) 0.45s forwards; }
+  .hero .ctas-load { opacity: 0; animation: royalLoadIn 1.4s var(--ease-royal) 0.6s forwards; }
+  .hero .meta-load { opacity: 0; animation: royalLoadIn 1.4s var(--ease-royal) 0.75s forwards; }
+  
+  @keyframes royalLoadIn {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero .crown-mark{width:52px; height:52px; margin:0 auto 30px; display:block; color:var(--gold-bright);}
+  .hero h1{
+    font-family:'Cinzel',serif;
+    font-size:clamp(32px, 5.4vw, 64px);
+    line-height:1.25;
+    letter-spacing:0.03em;
+    color:var(--ivory);
+    text-transform:uppercase;
+  }
+  .hero h1 span{color:var(--gold-bright);}
+  .hero .lede{
+    max-width:580px; margin:28px auto 0;
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:22px; color:var(--ivory-dim); font-weight:400;
+    line-height:1.6;
+  }
+  .hero-ctas{display:flex; gap:20px; justify-content:center; margin-top:48px; flex-wrap:wrap;}
+  .btn-primary, .btn-ghost{
+    padding:16px 32px; font-size:12.5px; letter-spacing:0.12em; text-transform:uppercase;
+    text-decoration:none; display:inline-flex; align-items:center; gap:10px;
+    transition:background .4s var(--ease-royal), color .4s var(--ease-royal), border-color .4s var(--ease-royal), padding .4s var(--ease-royal);
+  }
+  .btn-primary{background:var(--gold); color:var(--maroon-deep); border:1px solid var(--gold);}
+  .btn-primary:hover{background:var(--gold-bright); border-color:var(--gold-bright); padding:16px 38px;}
+  .btn-ghost{border:1px solid var(--gold-dim); color:var(--ivory);}
+  .btn-ghost:hover{border-color:var(--gold); color:var(--gold-bright); padding:16px 38px;}
+  
+  .hero-meta{ display:flex; justify-content:center; gap:0; flex-wrap:wrap; margin-top:60px; }
+  .hero-meta div{
+    padding:0 32px; border-right:1px solid var(--gold-dim);
+    font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ivory-dim);
+  }
+  html[data-lang="ar"] .hero-meta div { border-right: none; border-left: 1px solid var(--gold-dim); }
+  .hero-meta div:last-child{border-right:none;}
+  html[data-lang="ar"] .hero-meta div:last-child { border-left: none; }
+  .hero-meta strong{display:block; font-family:'Cormorant Garamond',serif; font-size:28px; color:var(--gold-bright); font-weight:600; letter-spacing:0; text-transform:none; margin-bottom:4px;}
+ 
+  .crest-divider{display:flex; align-items:center; justify-content:center; gap:20px; padding:0;}
+  .crest-divider .line{height:1px; width:130px; background:linear-gradient(90deg, transparent, var(--gold), transparent);}
+  .crest-divider svg{width:32px; height:32px; flex:none; color:var(--gold);}
+ 
+  section{padding:110px 32px; position:relative;}
+  .section-head{max-width:660px; margin:0 auto 60px; text-align:center;}
+  .section-head h2{
+    font-family:'Cinzel',serif; font-size:clamp(26px,3.6vw,38px);
+    margin-top:16px; color:var(--ivory); letter-spacing:0.02em; text-transform:uppercase;
+  }
+  .section-head p{margin-top:18px; color:var(--ivory-dim); font-size:17px; font-family:'Cormorant Garamond',serif; font-style:italic;}
+ 
+  /* ---------- HERITAGE ---------- */
+  .heritage{background:var(--maroon);}
+  .heritage-grid{
+    max-width:var(--maxw); margin:0 auto;
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:80px; align-items:center;
+  }
+  .heritage-figure{
+    position:relative; aspect-ratio:4/5;
+    background-image:
+      linear-gradient(180deg, rgba(26,6,12,0.15), rgba(26,6,12,0.85) 85%),
+      url('https://images.unsplash.com/photo-1718184021018-d2158af6b321?auto=format&fit=crop&w=1000&q=80');
+    background-size:cover; background-position:center;
+  }
+  .heritage-figure .ring-year{
+    position:absolute; bottom:26px; left:26px; right:26px;
+    display:flex; justify-content:space-between; align-items:flex-end;
+  }
+  html[data-lang="ar"] .heritage-figure .ring-year { flex-direction: row-reverse; }
+  
+  .heritage-figure .ring-year .yr { font-family:'Cinzel',serif; font-size:38px; color:var(--gold-bright); font-weight:600; }
+  .heritage-figure .ring-year .lbl { font-family:'Jost',sans-serif; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--ivory-dim); text-align:right; }
+  html[data-lang="ar"] .heritage-figure .ring-year .lbl { text-align: left; }
+  
+  .heritage-copy h2{font-family:'Cinzel',serif; font-size:clamp(26px,3.4vw,36px); margin-bottom:24px; letter-spacing:0.02em; text-transform:uppercase; line-height:1.35;}
+  .heritage-copy p{color:var(--ivory-dim); font-size:17px; margin-bottom:20px; max-width:52ch; font-family:'Cormorant Garamond',serif;}
+  .heritage-copy p:last-of-type{margin-bottom:0;}
+ 
+  /* ---------- COLLECTIONS ---------- */
+  .collections{background:var(--maroon-deep);}
+  .coll-grid{
+    max-width:var(--maxw); margin:0 auto;
+    display:grid; grid-template-columns:repeat(4,1fr); gap:22px;
+  }
+  .coll-card{
+    padding:42px 28px; text-align:left; background:var(--maroon);
+    transition:transform .45s var(--ease-royal), box-shadow .45s var(--ease-royal);
+  }
+  html[data-lang="ar"] .coll-card { text-align: right; }
+  .coll-card:hover{transform:translateY(-6px); box-shadow:var(--shadow-gold);}
+  .coll-card svg{width:30px; height:30px; margin-bottom:24px; color:var(--gold-bright);}
+  .coll-card h3{font-family:'Cormorant Garamond',serif; font-size:24px; color:var(--ivory); margin-bottom:12px; font-weight:600;}
+  .coll-card p{font-size:14.5px; color:var(--ivory-dim); margin:0; line-height:1.65;}
+ 
+  /* ---------- ATELIER ---------- */
+  .atelier{background:var(--maroon);}
+  .atelier-list{max-width:900px; margin:0 auto; display:flex; flex-direction:column;}
+  .atelier-row{
+    display:grid; grid-template-columns:90px 1fr; gap:30px;
+    padding:36px 0; border-top:1px solid var(--gold-dim);
+    align-items:baseline;
+  }
+  html[data-lang="ar"] .atelier-row { grid-template-columns: 1fr 90px; }
+  .atelier-row:last-child{border-bottom:1px solid var(--gold-dim);}
+  .atelier-row .num{font-family:'Cinzel',serif; font-size:34px; color:var(--gold); font-weight:600;}
+  .atelier-row h3{font-family:'Cormorant Garamond',serif; font-size:25px; color:var(--ivory); margin-bottom:10px; font-weight:600;}
+  .atelier-row p{font-size:15.5px; color:var(--ivory-dim); margin:0; max-width:56ch;}
+ 
+  /* ---------- REPUTATION ---------- */
+  .reputation{background:var(--maroon-deep); text-align:center;}
+  .stars{display:flex; justify-content:center; gap:7px; margin-bottom:24px;}
+  .stars svg{width:20px; height:20px;}
+  .rep-score{font-family:'Cinzel',serif; font-size:60px; color:var(--gold-bright); font-weight:600;}
+  .rep-score fill{color:var(--gold-bright);}
+  .rep-sub{color:var(--ivory-dim); font-size:13px; letter-spacing:0.1em; text-transform:uppercase; margin-top:10px;}
+  .rep-note{max-width:540px; margin:32px auto 0; color:var(--ivory-dim); font-size:18px; font-family:'Cormorant Garamond',serif; font-style:italic;}
+ 
+  /* ---------- VISIT ---------- */
+  .visit{background:var(--maroon);}
+  .visit-grid{
+    max-width:var(--maxw); margin:0 auto;
+    display:grid; grid-template-columns:1fr 1fr; gap:24px;
+  }
+  .visit-card{background:var(--maroon-soft); padding:46px;}
+  html[data-lang="ar"] .visit-card { text-align: right; }
+  .visit-card h3{font-size:13px; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); margin-bottom:22px; font-family:'Jost',sans-serif; font-weight:500;}
+  .visit-card p{color:var(--ivory); font-size:17px; line-height:1.8; margin:0 0 8px;}
+  .hours-row{display:flex; justify-content:space-between; gap:16px; padding:10px 0; border-bottom:1px solid var(--gold-dim); font-size:15px;}
+  html[data-lang="ar"] .hours-row { flex-direction: row-reverse; }
+  .hours-row:last-child{border-bottom:none;}
+  .hours-row .day{color:var(--ivory); font-family:'Cormorant Garamond',serif; font-size:18px;}
+  .hours-row .time{color:var(--ivory-dim); text-align:right;}
+  html[data-lang="ar"] .hours-row .time { text-align: left; }
+  .visit-card a.plain{color:var(--gold-bright); text-decoration:none; font-family:'Cormorant Garamond',serif; font-size:22px; display:inline-block; margin-top:6px;}
+  .visit-actions{display:flex; gap:14px; margin-top:28px; flex-wrap:wrap;}
+ 
+  footer{
+    background:var(--maroon-deep); border-top:1px solid var(--gold-dim);
+    padding:52px 32px 36px; text-align:center;
+  }
+  footer .brand{justify-content:center; margin-bottom:20px;}
+  footer p{color:var(--ivory-dim); font-size:13.5px; margin:5px 0;}
+  footer .fine{margin-top:26px; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:#6b5a4f;}
+ 
+  /* TWO-WAY SCROLL ENGINE */
+  .reveal {
+    opacity: 0; 
+    transform: translateY(32px); 
+    transition: opacity .9s var(--ease-royal), transform .9s var(--ease-royal);
+    will-change: transform, opacity;
+  }
+  .reveal.in {
+    opacity: 1; 
+    transform: translateY(0);
+  }
+ 
+  @media (max-width: 920px){
+    nav.links{display:none;}
+    .heritage-grid{grid-template-columns:1fr; gap:48px;}
+    .coll-grid{grid-template-columns:repeat(2,1fr);}
+    .visit-grid{grid-template-columns:1fr;}
+    .hero{padding:110px 24px 110px;}
+    .hero-meta div{padding:0 18px; border-right:none;}
+    html[data-lang="ar"] .hero-meta div { border-left: none; }
+  }
+  @media (max-width: 560px){
+    .coll-grid{grid-template-columns:1fr;}
+    .atelier-row{grid-template-columns:52px 1fr;}
+    html[data-lang="ar"] .atelier-row { grid-template-columns: 1fr 52px; }
+    section{padding:80px 20px;}
+    .hours-row{flex-direction:column; gap:2px;}
+    .hours-row .time{text-align:left;}
+    html[data-lang="ar"] .hours-row .time { text-align: right; }
+  }
+</style>
+</head>
+<body>
+ 
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="crown" viewBox="0 0 64 64">
+    <path d="M8 44 L4 20 L18 30 L32 12 L46 30 L60 20 L56 44 Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+    <rect x="8" y="44" width="48" height="7" fill="none" stroke="currentColor" stroke-width="2.2"/>
+    <circle cx="32" cy="10" r="2.6" fill="currentColor"/>
+    <circle cx="4" cy="19" r="2.2" fill="currentColor"/>
+    <circle cx="60" cy="19" r="2.2" fill="currentColor"/>
+  </symbol>
+</svg>
+ 
+<header>
+  <div class="nav">
+    <a href="#top" class="brand">
+      <svg class="crown"><use href="#crown"/></svg>
+      <span class="brand-name">Al-<b>Ghaida</b> Textiles</span>
+    </a>
+    <nav class="links">
+      <a href="#heritage">
+        <span class="lang-en">Heritage</span>
+        <span class="lang-ar">تراثنا</span>
+      </a>
+      <a href="#collections">
+        <span class="lang-en">Collections</span>
+        <span class="lang-ar">مجموعاتنا</span>
+      </a>
+      <a href="#atelier">
+        <span class="lang-en">Atelier</span>
+        <span class="lang-ar">الأتيلييه</span>
+      </a>
+      <a href="#visit">
+        <span class="lang-en">Visit</span>
+        <span class="lang-ar">زيارتنا</span>
+      </a>
+      <button class="lang-toggle" id="langToggle" type="button">
+        <span class="lang-en">العربية</span>
+        <span class="lang-ar">English</span>
+      </button>
+    </nav>
+    <a class="nav-cta" href="tel:+97444444320">
+      <span class="lang-en">Call 4444 4320</span>
+      <span class="lang-ar">اتصل بـ ٤٤٤٤ ٤٣٢٠</span>
+    </a>
+  </div>
+</header>
+ 
+<main id="top">
+ 
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-frame">
+      <div class="eyebrow-load">
+        <span class="eyebrow lang-en">Al Sadd · Doha · Est. 1987</span>
+        <span class="eyebrow lang-ar">السد · الدوحة · تأسس عام ١٩٨٧</span>
+      </div>
+      <div class="crown-load"><svg class="crown-mark"><use href="#crown"/></svg></div>
+      <div class="title-load">
+        <h1 class="lang-en">Fine cloth,<br><span>tailored for those who reign.</span></h1>
+        <h1 class="lang-ar">أقمشة فاخرة،<br><span>مُفصلة لمن يعتلون الصدارة.</span></h1>
+      </div>
+      <div class="lede-load">
+        <p class="lede lang-en">Since 1987, Al-Ghaida has served Doha's most discerning families with imported fabric of true provenance and tailoring cut for one wearer alone.</p>
+        <p class="lede lang-ar">منذ عام ١٩٨٧، تفخر أقمشة الغيداء بتقديم أرقى خامات الأقمشة المستوردة ذات الجودة الأصيلة، وصياغتها بتفصيل مخصص وفريد للعائلات المرموقة في الدوحة.</p>
+      </div>
+      <div class="ctas-load">
+        <div class="hero-ctas">
+          <a class="btn-primary" href="https://wa.me/97444444320?text=Hello%20Al-Ghaida%2C%20I%20would%20like%20to%20schedule%20a%20bespoke%20consultation%20session." target="_blank" rel="noopener">
+            <span class="lang-en">Book a Fitting</span>
+            <span class="lang-ar">حجز موعد قياس</span>
+          </a>
+          <a class="btn-ghost" href="https://www.google.com/maps/search/?api=1&query=Al+Ghaida+Textiles+Al+Sadd+Doha" target="_blank" rel="noopener">
+            <span class="lang-en">Get Directions</span>
+            <span class="lang-ar">الحصول على الاتجاهات</span>
+          </a>
+        </div>
+      </div>
+      <div class="meta-load">
+        <div class="hero-meta">
+          <div>
+            <strong class="lang-en">1987</strong>
+            <strong class="lang-ar">١٩٨٧</strong>
+            <span class="lang-en">Year Founded</span>
+            <span class="lang-ar">عام التأسيس</span>
+          </div>
+          <div>
+            <strong>4.3★</strong>
+            <span class="lang-en">Google Rating</span>
+            <span class="lang-ar">تقييم جوجل</span>
+          </div>
+          <div>
+            <strong class="lang-en">23</strong>
+            <strong class="lang-ar">٢٣</strong>
+            <span class="lang-en">Client Reviews</span>
+            <span class="lang-ar">آراء العملاء</span>
+          </div>
+          <div>
+            <strong class="lang-en">Al Sadd</strong>
+            <strong class="lang-ar">السد</strong>
+            <span class="lang-en">Doha Atelier</span>
+            <span class="lang-ar">مشغل الدوحة</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <div class="crest-divider" style="background:var(--maroon-deep); padding:60px 0 0;"><span class="line"></span><svg><use href="#crown"/></svg><span class="line"></span></div>
+ 
+  <!-- HERITAGE SECTION -->
+  <section class="heritage" id="heritage">
+    <div class="heritage-grid">
+      <div class="heritage-figure gold-frame reveal">
+        <div class="ring-year">
+          <span class="yr lang-en">'87</span>
+          <span class="yr lang-ar">٨٧'</span>
+          <span class="lbl lang-en">Founded in<br>the heart of Al Sadd</span>
+          <span class="lbl lang-ar">تأسس في<br>قلب منطقة السد</span>
+        </div>
+      </div>
+      <div class="heritage-copy reveal">
+        <span class="eyebrow lang-en">Our Heritage</span>
+        <span class="eyebrow lang-ar">تراثنا الأصيل</span>
+        <h2 class="lang-en">A house built on cloth,<br>trusted across generations.</h2>
+        <h2 class="lang-ar">دار عريقة للأقمشة،<br>توارثتها الأجيال بكامل الثقة.</h2>
+        
+        <p class="lang-en">Al-Ghaida opened its doors in 1987 as one of Qatar's earliest dedicated textile and designer houses, when fine imported fabric was hard to find and harder to trust.</p>
+        <p class="lang-ar">افتتحت أقمشة الغيداء أبوابها في عام ١٩٨٧ كأحد أوائل البيوت المتخصصة في التصميم والأقمشة الراقية في قطر، في وقت كان العثور فيه على الأقمشة المستوردة الفاخرة أمرًا صعبًا ونيل الثقة أصعب.</p>
+        
+        <p class="lang-en">Nearly four decades on, the same instinct guides every bolt we cut: source honestly, tailor precisely, and finish every garment as if it carries the family name — because for many of our clients, it does.</p>
+        <p class="lang-ar">وعلى مدى قرابة أربعة عقود، لا يزال الشغف والالتزام ذاته يوجه كل قطعة نختارها ونقصها: المصداقية في الاستيراد، الدقة البالغة في التفصيل، وإخراج كل رداء وكأنه يحمل اسم عائلتنا العريقة — لأنه بالنسبة لغالبية عملائنا، يحمل ذلك بالفعل.</p>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- COLLECTIONS SECTION -->
+  <section class="collections" id="collections">
+    <div class="section-head reveal">
+      <span class="eyebrow lang-en">Collections</span>
+      <span class="eyebrow lang-ar">مجموعاتنا</span>
+      <h2 class="lang-en">Fabric for Every Occasion of Life</h2>
+      <h2 class="lang-ar">أقمشة فاخرة لكل مناسبات الحياة</h2>
+      <p class="lang-en">Hand-selected bolts from established mills, held in-house for immediate viewing and cutting.</p>
+      <p class="lang-ar">لفائف من الأقمشة المختارة بعناية فائقة من أعرق المصانع العالمية، متوفرة في الدار للمعاينة والقص الفوري.</p>
+    </div>
+    <div class="coll-grid">
+      <div class="coll-card gold-frame reveal">
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 8c4 4 8 4 12 0s8-4 12 0M4 16c4 4 8 4 12 0s8-4 12 0M4 24c4 4 8 4 12 0s8-4 12 0"/></svg>
+        <h3>
+          <span class="lang-en">Silks &amp; Satins</span>
+          <span class="lang-ar">الحرير والساتان</span>
+        </h3>
+        <p class="lang-en">Fluid weights for eveningwear and occasion pieces, sourced from long-standing mills.</p>
+        <p class="lang-ar">أوزان خفيفة وانسيابية لملابس السهرات والمناسبات الخاصة، مستوردة من مصانع عريقة وتاريخية.</p>
+      </div>
+      <div class="coll-card gold-frame reveal">
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="5" y="5" width="22" height="22" rx="1"/><path d="M5 12h22M5 19h22M12 5v22M19 5v22"/></svg>
+        <h3>
+          <span class="lang-en">Wool &amp; Suiting</span>
+          <span class="lang-ar">الأصواف والبدل</span>
+        </h3>
+        <p class="lang-en">Structured wools and blends for tailored jackets, coats and formal suiting.</p>
+        <p class="lang-ar">أصواف وأنسجة متينة ومثالية لتفصيل السترات، المعاطف والبدل الرسمية الفخمة.</p>
+      </div>
+      <div class="coll-card gold-frame reveal">
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M16 4c-3 4-3 8 0 11s3 7 0 11" /><path d="M9 6c3 5 3 9 0 12s0 8 3 6M23 6c-3 5-3 9 0 12s0 8-3 6"/></svg>
+        <h3>
+          <span class="lang-en">Bridal &amp; Occasion</span>
+          <span class="lang-ar">الأعراس والمناسبات</span>
+        </h3>
+        <p class="lang-en">Embellished and embroidered fabrics for weddings and once-in-a-lifetime moments.</p>
+        <p class="lang-ar">أقمشة مطرزة ومزينة ببراعة، صُممت خصيصاً لحفلات الزفاف واللحظات التي لا تُنسى في العمر.</p>
+      </div>
+      <div class="coll-card gold-frame reveal">
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 26V10l10-6 10 6v16" /><path d="M6 26h20M12 26v-8h8v8"/></svg>
+        <h3>
+          <span class="lang-en">Thobe &amp; Bisht</span>
+          <span class="lang-ar">الأثواب والبشوت</span>
+        </h3>
+        <p class="lang-en">Premium local and imported cloth cut in the traditional silhouettes clients trust us with.</p>
+        <p class="lang-ar">أرقى الأنسجة المحلية والمستوردة، تُقَص وتُفصَّل بالتصاميم والأنماط التقليدية التي يثق بها عملائنا.</p>
+      </div>
+    </div>
+  </section>
+ 
+  <div class="crest-divider" style="background:var(--maroon); padding:0 0 60px;"><span class="line"></span><svg><use href="#crown"/></svg><span class="line"></span></div>
+ 
+  <!-- ATELIER SECTION -->
+  <section class="atelier" id="atelier" style="padding-top:0;">
+    <div class="section-head reveal">
+      <span class="eyebrow lang-en">The Atelier</span>
+      <span class="eyebrow lang-ar">الأتيلييه</span>
+      <h2 class="lang-en">From Bolt to Bespoke, in Four Fittings</h2>
+      <h2 class="lang-ar">من لفافة القماش إلى رداء مخصص، في أربع مراحل</h2>
+    </div>
+    <div class="atelier-list">
+      <div class="atelier-row reveal">
+        <span class="num lang-en">01</span>
+        <span class="num lang-ar">٠١</span>
+        <div>
+          <h3>
+            <span class="lang-en">Consultation</span>
+            <span class="lang-ar">الاستشارة الفنية</span>
+          </h3>
+          <p class="lang-en">We discuss occasion, silhouette and budget, then walk the floor together to shortlist fabrics in person.</p>
+          <p class="lang-ar">نناقش طبيعة المناسبة، التصميم والميزانية المحددة، ثم نتجول معاً لاختيار الأقمشة المفضلة لديكم حضورياً.</p>
+        </div>
+      </div>
+      <div class="atelier-row reveal">
+        <span class="num lang-en">02</span>
+        <span class="num lang-ar">٠٢</span>
+        <div>
+          <h3>
+            <span class="lang-en">Fabric &amp; Measure</span>
+            <span class="lang-ar">اختيار القماش وأخذ القياسات</span>
+          </h3>
+          <p class="lang-en">Your cloth is cut from the bolt and reserved, while our tailors take a full set of precise measurements.</p>
+          <p class="lang-ar">يتم قص القماش المختار من اللفافة وحجزه لاسمكم، بينما يقوم خياطونا بأخذ مجموعة كاملة من القياسات الدقيقة جداً.</p>
+        </div>
+      </div>
+      <div class="atelier-row reveal">
+        <span class="num lang-en">03</span>
+        <span class="num lang-ar">٠٣</span>
+        <div>
+          <h3>
+            <span class="lang-en">First Fitting</span>
+            <span class="lang-ar">البروفة الأولى</span>
+          </h3>
+          <p class="lang-en">A basted garment is fitted on you directly, with adjustments marked for the finishing tailor.</p>
+          <p class="lang-ar">يتم تجربة الثوب الأولي والمبدئي عليكم مباشرة، مع تدوين وتحديد كافة التعديلات المطلوبة للخياط النهائي البارع.</p>
+        </div>
+      </div>
+      <div class="atelier-row reveal">
+        <span class="num lang-en">04</span>
+        <span class="num lang-ar">٠٤</span>
+        <div>
+          <h3>
+            <span class="lang-en">Finishing &amp; Handover</span>
+            <span class="lang-ar">اللمسات الأخيرة والتسليم</span>
+          </h3>
+          <p class="lang-en">Final pressing, detailing and a last fit check before your piece leaves the atelier.</p>
+          <p class="lang-ar">الكي النهائي، تدقيق التفاصيل الصغيرة، وإجراء فحص ملاءمة أخير قبل أن تغادر قطعتكم الفاخرة مشغلنا.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- REPUTATION SECTION -->
+  <section class="reputation">
+    <div class="reveal">
+      <div class="stars" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="var(--gold-bright)"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+        <svg viewBox="0 0 24 24" fill="var(--gold-bright)"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+        <svg viewBox="0 0 24 24" fill="var(--gold-bright)"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+        <svg viewBox="0 0 24 24" fill="var(--gold-bright)"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+        <svg viewBox="0 0 24 24" fill="var(--gold-bright)" opacity="0.4"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+      </div>
+      <div class="rep-score lang-en">4.3</div>
+      <div class="rep-score lang-ar">٤.٣</div>
+      <div class="rep-sub lang-en">Based on 23 Google Reviews</div>
+      <div class="rep-sub lang-ar">بناءً على ٢٣ تقييماً في جوجل</div>
+      <p class="rep-note lang-en">Word of mouth has carried this house since 1987 — most clients still find us the way their parents did.</p>
+      <p class="rep-note lang-ar">السمعة الطيبة وتوصيات عملائنا هي سر استمرارنا منذ عام ١٩٨٧ — غالبية عملائنا يزوروننا اليوم بنفس الطريقة التي زارنا بها آباؤهم من قبل.</p>
+    </div>
+  </section>
+ 
+  <div class="crest-divider" style="background:var(--maroon); padding:60px 0 0;"><span class="line"></span><svg><use href="#crown"/></svg><span class="line"></span></div>
+ 
+  <!-- VISIT SECTION -->
+  <section class="visit" id="visit">
+    <div class="section-head reveal">
+      <span class="eyebrow lang-en">Visit the Atelier</span>
+      <span class="eyebrow lang-ar">زيارة المشغل</span>
+      <h2 class="lang-en">Al Sadd, Doha</h2>
+      <h2 class="lang-ar">السد، الدوحة</h2>
+    </div>
+    <div class="visit-grid">
+      <div class="visit-card gold-frame reveal">
+        <h3 class="lang-en">Address</h3>
+        <h3 class="lang-ar">العنوان</h3>
+        <p class="lang-en">Building No. 164, Zone No. 38<br>Street No. 920, Al Saad St<br>Doha, Qatar</p>
+        <p class="lang-ar">مبنى رقم ١٦٤، منطقة رقم ٣٨<br>شارع رقم ٩٢٠، شارع السد<br>الدوحة، قطر</p>
+        <a class="plain lang-en" href="tel:+97444444320">4444 4320</a>
+        <a class="plain lang-ar" href="tel:+97444444320">٤٤٤٤ ٤٣٢٠</a>
+        <div class="visit-actions">
+          <a class="btn-primary" href="https://www.google.com/maps/search/?api=1&query=Al+Ghaida+Textiles+Al+Sadd+Doha" target="_blank" rel="noopener">
+            <span class="lang-en">Get Directions</span>
+            <span class="lang-ar">خرائط جوجل</span>
+          </a>
+          <a class="btn-ghost" href="tel:+97444444320">
+            <span class="lang-en">Call Now</span>
+            <span class="lang-ar">اتصل الآن</span>
+          </a>
+        </div>
+      </div>
+      <div class="visit-card gold-frame reveal">
+        <h3 class="lang-en">Opening Hours</h3>
+        <h3 class="lang-ar">أوقات العمل</h3>
+        <div class="hours-row">
+          <span class="day lang-en">Sat – Thu</span>
+          <span class="day lang-ar">السبت – الخميس</span>
+          <span class="time lang-en">9:00 AM – 12:30 PM</span>
+          <span class="time lang-ar">٩:٠٠ صباحاً – ١٢:٣0 ظهراً</span>
+        </div>
+        <div class="hours-row">
+          <span class="day">&nbsp;</span>
+          <span class="time lang-en">4:00 PM – 9:30 PM</span>
+          <span class="time lang-ar">٤:٠٠ عصراً – ٩:٣٠ مساءً</span>
+        </div>
+        <div class="hours-row">
+          <span class="day lang-en">Friday</span>
+          <span class="day lang-ar">الجمعة</span>
+          <span class="time lang-en">4:00 PM – 9:30 PM</span>
+          <span class="time lang-ar">٤:٠٠ عصراً – ٩:٣٠ مساءً</span>
+        </div>
+        <div class="visit-actions">
+          <a class="btn-primary" href="https://wa.me/97444444320?text=Hello%20Al-Ghaida%2C%20I%20would%20like%20to%20schedule%20a%20bespoke%20consultation%20session." target="_blank" rel="noopener">
+            <span class="lang-en">Book a Fitting</span>
+            <span class="lang-ar">حجز موعد قياس</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+</main>
+ 
+<footer>
+  <a href="#top" class="brand">
+    <svg class="crown"><use href="#crown"/></svg>
+    <span class="brand-name">Al-<b>Ghaida</b> Textiles</span>
+  </a>
+  <p class="lang-en">Building No. 164, Zone No. 38, Street No. 920, Al Saad St, Al Sadd, Doha, Qatar</p>
+  <p class="lang-ar">مبنى رقم ١٦٤، منطقة رقم ٣٨، شارع رقم ٩٢٠، شارع السد، السد، الدوحة، قطر</p>
+  <p>
+    <a href="tel:+97444444320" style="color:var(--gold-bright); text-decoration:none;" class="lang-en">4444 4320</a> 
+    <a href="tel:+97444444320" style="color:var(--gold-bright); text-decoration:none;" class="lang-ar">٤٤٤٤ ٤٣٢٠</a> 
+    &nbsp;·&nbsp; 
+    <span class="lang-en">Sat–Thu 9:00–12:30 &amp; 4:00–9:30</span> 
+    <span class="lang-ar">السبت–الخميس ٩:٠٠–١٢:٣٠ و ٤:٠٠–٩:٣٠</span> 
+    &nbsp;·&nbsp; 
+    <span class="lang-en">Fri 4:00–9:30</span>
+    <span class="lang-ar">الجمعة ٤:٠٠–٩:٣٠</span>
+  </p>
+  <p class="fine lang-en">Al-Ghaida Textiles Co. &middot; Serving Doha since 1987</p>
+  <p class="fine lang-ar">شركة أقمشة الغيداء &middot; نخدم الدوحة منذ عام ١٩٨٧</p>
+</footer>
+ 
+<script>
+  // Dynamic Infinite Scroll Reveal 
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const els = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+        } else {
+          e.target.classList.remove('in');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+    els.forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  }
+ 
+  // Enhanced Language Selector Trigger
+  const langToggleBtn = document.getElementById('langToggle');
+  const htmlEl = document.documentElement;
+
+  langToggleBtn.addEventListener('click', () => {
+    // Stage 1: Fade out page content seamlessly 
+    htmlEl.classList.add('lang-switching');
+    
+    // Stage 2: Swap variables while fully hidden mid-transition
+    setTimeout(() => {
+      const currentLang = htmlEl.getAttribute('data-lang');
+      const nextLang = currentLang === 'en' ? 'ar' : 'en';
+      
+      htmlEl.setAttribute('data-lang', nextLang);
+      htmlEl.setAttribute('lang', nextLang);
+      
+      // Stage 3: Smoothly glide back into view 
+      htmlEl.classList.remove('lang-switching');
+    }, 400); // Perfectly timed to match the 0.4s CSS transition ease
+  });
+</script>
+ 
+</body>
+</html>
